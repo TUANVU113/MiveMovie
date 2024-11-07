@@ -1,0 +1,53 @@
+﻿@model List<MineMovie_Nhom7_CNPM.Models.sp_TimKiemPhim_Result>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+@* Ô tìm kiếm *@
+<div class="d-flex justify-content-center align-items-center my-3">
+    <form class="d-flex flex-row align-items-center flex-wrap">
+        <input type="search"
+               class="form-control w-auto"
+               id="search"
+               name="search"
+               value="@ViewBag.Search"
+               placeholder="Nhập từ khoá..." />
+        <button type="submit" class="btn btn-primary mx-2">Tìm kiếm</button>
+    </form>
+</div>
+
+@* Hiện danh sách phim *@
+@if (ViewBag.Message != null)
+{
+    <p>@ViewBag.Message</p>
+}
+else
+{
+    <table class="table table-bordered mt-2">
+        <thead>
+            <tr>
+                <th>Ảnh</th>
+                <th>Mã phim</th>
+                <th>Tên phim</th>
+                <th>Nội dung phim</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <img src="@Url.Content("~/Content/Images/Poster/" + @item.HINH_ANH)" class="img-fluid" style="height: 20%; width: 20%;" alt="Ảnh bìa" />
+                    </td>
+                    <td>@item.ID_PHIM</td>
+                    <td>
+                        <a href="/movies/details/@item.ID_PHIM">@item.TEN_PHIM</a>
+                    </td>
+                    <td>@item.MO_TA</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+

@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MINEMOVIEModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CHI_TIET_PHIM">
+    <Key>
+      <PropertyRef Name="ID_PHIM" />
+    </Key>
+    <Property Name="ID_PHIM" Type="Int32" Nullable="false" />
+    <Property Name="TEN_PHIM" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="MO_TA" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="THOI_LUONG" Type="Time" Precision="7" />
+    <Property Name="QUOC_GIA" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="DAO_DIEN" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="HINH_ANH" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="TRAILER" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="NAM_PH" Type="Int32" />
+    <Property Name="ID_DM" Type="Int32" />
+    <Property Name="ID_TL" Type="Int32" />
+    <Property Name="IMDB_ID" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="PHIM" Relationship="Self.FK_ID_DM_ID_TL" FromRole="CHI_TIET_PHIM" ToRole="PHIM" />
+    <NavigationProperty Name="DANH_GIA" Relationship="Self.FK_ID_PHIM" FromRole="CHI_TIET_PHIM" ToRole="DANH_GIA" />
+  </EntityType>
+  <EntityType Name="DANH_GIA">
+    <Key>
+      <PropertyRef Name="ID_DG" />
+    </Key>
+    <Property Name="ID_DG" Type="Int32" Nullable="false" />
+    <Property Name="BINH_LUAN" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="SO_SAO" Type="Int32" />
+    <Property Name="NGAY_DG" Type="DateTime" Precision="0" />
+    <Property Name="ID_ND" Type="Int32" />
+    <Property Name="ID_PHIM" Type="Int32" />
+    <NavigationProperty Name="CHI_TIET_PHIM" Relationship="Self.FK_ID_PHIM" FromRole="DANH_GIA" ToRole="CHI_TIET_PHIM" />
+    <NavigationProperty Name="NGUOI_DUNG" Relationship="Self.FK_ID_ND" FromRole="DANH_GIA" ToRole="NGUOI_DUNG" />
+  </EntityType>
+  <EntityType Name="DS_YEU_THICH">
+    <Key>
+      <PropertyRef Name="ID_DS" />
+    </Key>
+    <Property Name="ID_DS" Type="Int32" Nullable="false" />
+    <Property Name="NGAY_THEM" Type="DateTime" Precision="0" />
+    <Property Name="SO_LUONG" Type="Int32" />
+  </EntityType>
+  <EntityType Name="NGUOI_DUNG">
+    <Key>
+      <PropertyRef Name="ID_ND" />
+    </Key>
+    <Property Name="ID_ND" Type="Int32" Nullable="false" />
+    <Property Name="TEN_ND" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="GMAIL" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="MAT_KHAU" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="CHUC_VU" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ANH_DAI_DIEN" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DANH_GIA" Relationship="Self.FK_ID_ND" FromRole="NGUOI_DUNG" ToRole="DANH_GIA" />
+  </EntityType>
+  <EntityType Name="PHIM">
+    <Key>
+      <PropertyRef Name="ID_DANH_MUC" />
+      <PropertyRef Name="ID_TL" />
+    </Key>
+    <Property Name="ID_DANH_MUC" Type="Int32" Nullable="false" />
+    <Property Name="TEN_DANH_MUC" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ID_TL" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="CHI_TIET_PHIM" Relationship="Self.FK_ID_DM_ID_TL" FromRole="PHIM" ToRole="CHI_TIET_PHIM" />
+    <NavigationProperty Name="THE_LOAI" Relationship="Self.FK_ID_TL" FromRole="PHIM" ToRole="THE_LOAI" />
+  </EntityType>
+  <EntityType Name="RAP_PHIM">
+    <Key>
+      <PropertyRef Name="ID_RAP" />
+    </Key>
+    <Property Name="ID_RAP" Type="Int32" Nullable="false" />
+    <Property Name="TEN_RAP" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="WEBSITE" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="THE_LOAI">
+    <Key>
+      <PropertyRef Name="ID_THE_LOAI" />
+    </Key>
+    <Property Name="ID_THE_LOAI" Type="Int32" Nullable="false" />
+    <Property Name="TEN_THE_LOAI" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PHIMs" Relationship="Self.FK_ID_TL" FromRole="THE_LOAI" ToRole="PHIM" />
+  </EntityType>
+  <Association Name="FK_ID_DM_ID_TL">
+    <End Role="PHIM" Type="Self.PHIM" Multiplicity="0..1" />
+    <End Role="CHI_TIET_PHIM" Type="Self.CHI_TIET_PHIM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHIM">
+        <PropertyRef Name="ID_DANH_MUC" />
+        <PropertyRef Name="ID_TL" />
+      </Principal>
+      <Dependent Role="CHI_TIET_PHIM">
+        <PropertyRef Name="ID_DM" />
+        <PropertyRef Name="ID_TL" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ID_PHIM">
+    <End Role="CHI_TIET_PHIM" Type="Self.CHI_TIET_PHIM" Multiplicity="0..1" />
+    <End Role="DANH_GIA" Type="Self.DANH_GIA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CHI_TIET_PHIM">
+        <PropertyRef Name="ID_PHIM" />
+      </Principal>
+      <Dependent Role="DANH_GIA">
+        <PropertyRef Name="ID_PHIM" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ID_ND">
+    <End Role="NGUOI_DUNG" Type="Self.NGUOI_DUNG" Multiplicity="0..1" />
+    <End Role="DANH_GIA" Type="Self.DANH_GIA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NGUOI_DUNG">
+        <PropertyRef Name="ID_ND" />
+      </Principal>
+      <Dependent Role="DANH_GIA">
+        <PropertyRef Name="ID_ND" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ID_TL">
+    <End Role="THE_LOAI" Type="Self.THE_LOAI" Multiplicity="1" />
+    <End Role="PHIM" Type="Self.PHIM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="THE_LOAI">
+        <PropertyRef Name="ID_THE_LOAI" />
+      </Principal>
+      <Dependent Role="PHIM">
+        <PropertyRef Name="ID_TL" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MINEMOVIEEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CHI_TIET_PHIM" EntityType="Self.CHI_TIET_PHIM" />
+    <EntitySet Name="DANH_GIA" EntityType="Self.DANH_GIA" />
+    <EntitySet Name="DS_YEU_THICH" EntityType="Self.DS_YEU_THICH" />
+    <EntitySet Name="NGUOI_DUNG" EntityType="Self.NGUOI_DUNG" />
+    <EntitySet Name="PHIMs" EntityType="Self.PHIM" />
+    <EntitySet Name="RAP_PHIM" EntityType="Self.RAP_PHIM" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="THE_LOAI" EntityType="Self.THE_LOAI" />
+    <AssociationSet Name="FK_ID_DM_ID_TL" Association="Self.FK_ID_DM_ID_TL">
+      <End Role="PHIM" EntitySet="PHIMs" />
+      <End Role="CHI_TIET_PHIM" EntitySet="CHI_TIET_PHIM" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ID_PHIM" Association="Self.FK_ID_PHIM">
+      <End Role="CHI_TIET_PHIM" EntitySet="CHI_TIET_PHIM" />
+      <End Role="DANH_GIA" EntitySet="DANH_GIA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ID_ND" Association="Self.FK_ID_ND">
+      <End Role="NGUOI_DUNG" EntitySet="NGUOI_DUNG" />
+      <End Role="DANH_GIA" EntitySet="DANH_GIA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ID_TL" Association="Self.FK_ID_TL">
+      <End Role="THE_LOAI" EntitySet="THE_LOAI" />
+      <End Role="PHIM" EntitySet="PHIMs" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(MINEMOVIEModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(MINEMOVIEModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_TimKiemPhim" ReturnType="Collection(MINEMOVIEModel.sp_TimKiemPhim_Result)">
+      <Parameter Name="TuKhoa" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_TimKiemPhim_Result">
+    <Property Type="Int32" Name="ID_PHIM" Nullable="false" />
+    <Property Type="String" Name="TEN_PHIM" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="MO_TA" Nullable="true" MaxLength="255" />
+    <Property Type="Time" Name="THOI_LUONG" Nullable="true" />
+    <Property Type="String" Name="QUOC_GIA" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="DAO_DIEN" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="HINH_ANH" Nullable="true" MaxLength="255" />
+    <Property Type="String" Name="TRAILER" Nullable="true" MaxLength="255" />
+    <Property Type="Int32" Name="NAM_PH" Nullable="true" />
+    <Property Type="Int32" Name="ID_DM" Nullable="true" />
+    <Property Type="Int32" Name="ID_TL" Nullable="true" />
+    <Property Type="String" Name="IMDB_ID" Nullable="true" MaxLength="30" />
+  </ComplexType>
+</Schema>

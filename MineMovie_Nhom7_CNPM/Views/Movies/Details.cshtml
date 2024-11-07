@@ -1,0 +1,28 @@
+﻿@model MineMovie_Nhom7_CNPM.Models.CHI_TIET_PHIM
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="d-flex justify-content-center align-items-center" style="height: 250px; width: 100%">
+            <img src="@Url.Content("~/Content/Images/Poster/" + Model.HINH_ANH)" class="img-fluid" style="max-height: 100%; max-width: 100%;" alt="Ảnh bìa" />
+        </div>
+    </div>
+    <div class="col-md-8">
+        <h2>@Model.TEN_PHIM</h2>
+        <p><strong>Nội dung phim:</strong> @Model.MO_TA</p>
+        <p><strong>Thời lượng:</strong> @Model.THOI_LUONG</p>
+        <p><strong>Quốc gia:</strong> @Model.QUOC_GIA</p>
+        <p><strong>Đạo diễn:</strong> @Model.DAO_DIEN</p>
+        <p><strong>Trailer:</strong> @Model.TRAILER</p>
+        <p><strong>Năm khởi chiếu:</strong> @Model.NAM_PH</p>
+        <p><strong>Danh mục:</strong> @Model.PHIM.TEN_DANH_MUC</p>
+        <p><strong>Thể loại:</strong> @Model.PHIM.ID_TL.</p>
+        <p><strong>Điểm IMDb:</strong> @ViewBag.ImdbRating</p> <!-- Hiển thị rating từ IMDb -->
+        <p><strong>Điểm Rotten Tomatoes:</strong> @ViewBag.RtRating</p> <!-- Hiển thị rating từ Rotten Tomatoes -->
+        <p><strong>Điểm Metacritic:</strong> @ViewBag.MetacriticRating</p> <!-- Hiển thị rating từ Metacritic -->
+        <a href="/movies/index">Quay lại</a>
+    </div>
+</div>

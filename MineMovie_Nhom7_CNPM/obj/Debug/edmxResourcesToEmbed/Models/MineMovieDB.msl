@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MINEMOVIEModelStoreContainer" CdmEntityContainer="MINEMOVIEEntities">
+    <EntitySetMapping Name="CHI_TIET_PHIM">
+      <EntityTypeMapping TypeName="MINEMOVIEModel.CHI_TIET_PHIM">
+        <MappingFragment StoreEntitySet="CHI_TIET_PHIM">
+          <ScalarProperty Name="ID_PHIM" ColumnName="ID_PHIM" />
+          <ScalarProperty Name="TEN_PHIM" ColumnName="TEN_PHIM" />
+          <ScalarProperty Name="MO_TA" ColumnName="MO_TA" />
+          <ScalarProperty Name="THOI_LUONG" ColumnName="THOI_LUONG" />
+          <ScalarProperty Name="QUOC_GIA" ColumnName="QUOC_GIA" />
+          <ScalarProperty Name="DAO_DIEN" ColumnName="DAO_DIEN" />
+          <ScalarProperty Name="HINH_ANH" ColumnName="HINH_ANH" />
+          <ScalarProperty Name="TRAILER" ColumnName="TRAILER" />
+          <ScalarProperty Name="NAM_PH" ColumnName="NAM_PH" />
+          <ScalarProperty Name="ID_DM" ColumnName="ID_DM" />
+          <ScalarProperty Name="ID_TL" ColumnName="ID_TL" />
+          <ScalarProperty Name="IMDB_ID" ColumnName="IMDB_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DANH_GIA">
+      <EntityTypeMapping TypeName="MINEMOVIEModel.DANH_GIA">
+        <MappingFragment StoreEntitySet="DANH_GIA">
+          <ScalarProperty Name="ID_DG" ColumnName="ID_DG" />
+          <ScalarProperty Name="BINH_LUAN" ColumnName="BINH_LUAN" />
+          <ScalarProperty Name="SO_SAO" ColumnName="SO_SAO" />
+          <ScalarProperty Name="NGAY_DG" ColumnName="NGAY_DG" />
+          <ScalarProperty Name="ID_ND" ColumnName="ID_ND" />
+          <ScalarProperty Name="ID_PHIM" ColumnName="ID_PHIM" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DS_YEU_THICH">
+      <EntityTypeMapping TypeName="MINEMOVIEModel.DS_YEU_THICH">
+        <MappingFragment StoreEntitySet="DS_YEU_THICH">
+          <ScalarProperty Name="ID_DS" ColumnName="ID_DS" />
+          <ScalarProperty Name="NGAY_THEM" ColumnName="NGAY_THEM" />
+          <ScalarProperty Name="SO_LUONG" ColumnName="SO_LUONG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NGUOI_DUNG">
+      <EntityTypeMapping TypeName="MINEMOVIEModel.NGUOI_DUNG">
+        <MappingFragment StoreEntitySet="NGUOI_DUNG">
+          <ScalarProperty Name="ID_ND" ColumnName="ID_ND" />
+          <ScalarProperty Name="TEN_ND" ColumnName="TEN_ND" />
+          <ScalarProperty Name="GMAIL" ColumnName="GMAIL" />
+          <ScalarProperty Name="MAT_KHAU" ColumnName="MAT_KHAU" />
+          <ScalarProperty Name="CHUC_VU" ColumnName="CHUC_VU" />
+          <ScalarProperty Name="ANH_DAI_DIEN" ColumnName="ANH_DAI_DIEN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PHIMs">
+      <EntityTypeMapping TypeName="MINEMOVIEModel.PHIM">
+        <MappingFragment StoreEntitySet="PHIM">
+          <ScalarProperty Name="ID_DANH_MUC" ColumnName="ID_DANH_MUC" />
+          <ScalarProperty Name="TEN_DANH_MUC" ColumnName="TEN_DANH_MUC" />
+          <ScalarProperty Name="ID_TL" ColumnName="ID_TL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RAP_PHIM">
+      <EntityTypeMapping TypeName="MINEMOVIEModel.RAP_PHIM">
+        <MappingFragment StoreEntitySet="RAP_PHIM">
+          <ScalarProperty Name="ID_RAP" ColumnName="ID_RAP" />
+          <ScalarProperty Name="TEN_RAP" ColumnName="TEN_RAP" />
+          <ScalarProperty Name="WEBSITE" ColumnName="WEBSITE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="MINEMOVIEModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="THE_LOAI">
+      <EntityTypeMapping TypeName="MINEMOVIEModel.THE_LOAI">
+        <MappingFragment StoreEntitySet="THE_LOAI">
+          <ScalarProperty Name="ID_THE_LOAI" ColumnName="ID_THE_LOAI" />
+          <ScalarProperty Name="TEN_THE_LOAI" ColumnName="TEN_THE_LOAI" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="MINEMOVIEModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="MINEMOVIEModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="MINEMOVIEModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="MINEMOVIEModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MINEMOVIEModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="MINEMOVIEModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MINEMOVIEModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="MINEMOVIEModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_TimKiemPhim" FunctionName="MINEMOVIEModel.Store.sp_TimKiemPhim">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MINEMOVIEModel.sp_TimKiemPhim_Result">
+          <ScalarProperty Name="ID_PHIM" ColumnName="ID_PHIM" />
+          <ScalarProperty Name="TEN_PHIM" ColumnName="TEN_PHIM" />
+          <ScalarProperty Name="MO_TA" ColumnName="MO_TA" />
+          <ScalarProperty Name="THOI_LUONG" ColumnName="THOI_LUONG" />
+          <ScalarProperty Name="QUOC_GIA" ColumnName="QUOC_GIA" />
+          <ScalarProperty Name="DAO_DIEN" ColumnName="DAO_DIEN" />
+          <ScalarProperty Name="HINH_ANH" ColumnName="HINH_ANH" />
+          <ScalarProperty Name="TRAILER" ColumnName="TRAILER" />
+          <ScalarProperty Name="NAM_PH" ColumnName="NAM_PH" />
+          <ScalarProperty Name="ID_DM" ColumnName="ID_DM" />
+          <ScalarProperty Name="ID_TL" ColumnName="ID_TL" />
+          <ScalarProperty Name="IMDB_ID" ColumnName="IMDB_ID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="MINEMOVIEModel.Store.sp_upgraddiagrams" />
+  </EntityContainerMapping>
+</Mapping>
