@@ -10,8 +10,8 @@
 
 </head>
 <body class="d-flex flex-column min-vh-100">
-    <nav class="navbar navbar-expand-sm bg-info navbar-dark">
-        <div class="container-fluid">
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-sm bg-info navbar-dark">
             <a class="navbar-brand d-flex align-items-center ms-3" href="/home">
                 <img src="@Url.Content("~/Content/Images/logo.png")" alt="Company Logo" width="100" height="100" />
             </a>
@@ -25,11 +25,12 @@
                     </li>
                 </ul>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </div>
     <div class="container-fluid">
         @RenderBody()
     </div>
+    @RenderSection("Scripts", required: false)
     <footer class="bg-dark py-3 mt-auto">
         <div class="container text-center">
             <p class="mb-0 text-white">&copy; @DateTime.Now.Year - MineMovie</p>

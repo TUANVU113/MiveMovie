@@ -30,122 +30,102 @@ namespace MineMovie_Nhom7_CNPM.Models
         public virtual DbSet<CHI_TIET_PHIM> CHI_TIET_PHIM { get; set; }
         public virtual DbSet<DANH_GIA> DANH_GIA { get; set; }
         public virtual DbSet<DS_YEU_THICH> DS_YEU_THICH { get; set; }
+        public virtual DbSet<KH_PHIM_DSYT> KH_PHIM_DSYT { get; set; }
+        public virtual DbSet<KH_PHIM_RAP> KH_PHIM_RAP { get; set; }
         public virtual DbSet<NGUOI_DUNG> NGUOI_DUNG { get; set; }
         public virtual DbSet<PHIM> PHIMs { get; set; }
         public virtual DbSet<RAP_PHIM> RAP_PHIM { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<THE_LOAI> THE_LOAI { get; set; }
     
-        public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
+        public virtual int procDangKiNguoiDung(string tentk, string gmail, string mk, string ava)
         {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
+            var tentkParameter = tentk != null ?
+                new ObjectParameter("tentk", tentk) :
+                new ObjectParameter("tentk", typeof(string));
     
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
+            var gmailParameter = gmail != null ?
+                new ObjectParameter("gmail", gmail) :
+                new ObjectParameter("gmail", typeof(string));
     
-            var versionParameter = version.HasValue ?
-                new ObjectParameter("version", version) :
-                new ObjectParameter("version", typeof(int));
+            var mkParameter = mk != null ?
+                new ObjectParameter("mk", mk) :
+                new ObjectParameter("mk", typeof(string));
     
-            var definitionParameter = definition != null ?
-                new ObjectParameter("definition", definition) :
-                new ObjectParameter("definition", typeof(byte[]));
+            var avaParameter = ava != null ?
+                new ObjectParameter("ava", ava) :
+                new ObjectParameter("ava", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_alterdiagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("procDangKiNguoiDung", tentkParameter, gmailParameter, mkParameter, avaParameter);
         }
     
-        public virtual int sp_creatediagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
+        public virtual ObjectResult<string> procDangNhapNguoiDung(string tentk, string mk)
         {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
+            var tentkParameter = tentk != null ?
+                new ObjectParameter("tentk", tentk) :
+                new ObjectParameter("tentk", typeof(string));
     
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
+            var mkParameter = mk != null ?
+                new ObjectParameter("mk", mk) :
+                new ObjectParameter("mk", typeof(string));
     
-            var versionParameter = version.HasValue ?
-                new ObjectParameter("version", version) :
-                new ObjectParameter("version", typeof(int));
-    
-            var definitionParameter = definition != null ?
-                new ObjectParameter("definition", definition) :
-                new ObjectParameter("definition", typeof(byte[]));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_creatediagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("procDangNhapNguoiDung", tentkParameter, mkParameter);
         }
     
-        public virtual int sp_dropdiagram(string diagramname, Nullable<int> owner_id)
+        public virtual ObjectResult<Nullable<bool>> procKiemTraPhimYeuThich(Nullable<int> idND, Nullable<int> idPhim)
         {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
+            var idNDParameter = idND.HasValue ?
+                new ObjectParameter("idND", idND) :
+                new ObjectParameter("idND", typeof(int));
     
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
+            var idPhimParameter = idPhim.HasValue ?
+                new ObjectParameter("idPhim", idPhim) :
+                new ObjectParameter("idPhim", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_dropdiagram", diagramnameParameter, owner_idParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<bool>>("procKiemTraPhimYeuThich", idNDParameter, idPhimParameter);
         }
     
-        public virtual ObjectResult<sp_helpdiagramdefinition_Result> sp_helpdiagramdefinition(string diagramname, Nullable<int> owner_id)
+        public virtual int procThemPhimYeuThich(Nullable<int> idND, Nullable<int> idPhim)
         {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
+            var idNDParameter = idND.HasValue ?
+                new ObjectParameter("idND", idND) :
+                new ObjectParameter("idND", typeof(int));
     
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
+            var idPhimParameter = idPhim.HasValue ?
+                new ObjectParameter("idPhim", idPhim) :
+                new ObjectParameter("idPhim", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagramdefinition_Result>("sp_helpdiagramdefinition", diagramnameParameter, owner_idParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("procThemPhimYeuThich", idNDParameter, idPhimParameter);
         }
     
-        public virtual ObjectResult<sp_helpdiagrams_Result> sp_helpdiagrams(string diagramname, Nullable<int> owner_id)
+        public virtual ObjectResult<procThongTinNguoiDung_Result> procThongTinNguoiDung(string tentk)
         {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
+            var tentkParameter = tentk != null ?
+                new ObjectParameter("tentk", tentk) :
+                new ObjectParameter("tentk", typeof(string));
     
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagrams_Result>("sp_helpdiagrams", diagramnameParameter, owner_idParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<procThongTinNguoiDung_Result>("procThongTinNguoiDung", tentkParameter);
         }
     
-        public virtual int sp_renamediagram(string diagramname, Nullable<int> owner_id, string new_diagramname)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var new_diagramnameParameter = new_diagramname != null ?
-                new ObjectParameter("new_diagramname", new_diagramname) :
-                new ObjectParameter("new_diagramname", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
-        }
-    
-        public virtual ObjectResult<sp_TimKiemPhim_Result> sp_TimKiemPhim(string tuKhoa)
+        public virtual ObjectResult<procTimKiemPhim_Result> procTimKiemPhim(string tuKhoa)
         {
             var tuKhoaParameter = tuKhoa != null ?
                 new ObjectParameter("TuKhoa", tuKhoa) :
                 new ObjectParameter("TuKhoa", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_TimKiemPhim_Result>("sp_TimKiemPhim", tuKhoaParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<procTimKiemPhim_Result>("procTimKiemPhim", tuKhoaParameter);
         }
     
-        public virtual int sp_upgraddiagrams()
+        public virtual int procXoaPhimYeuThich(Nullable<int> idND, Nullable<int> idPhim)
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
+            var idNDParameter = idND.HasValue ?
+                new ObjectParameter("idND", idND) :
+                new ObjectParameter("idND", typeof(int));
+    
+            var idPhimParameter = idPhim.HasValue ?
+                new ObjectParameter("idPhim", idPhim) :
+                new ObjectParameter("idPhim", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("procXoaPhimYeuThich", idNDParameter, idPhimParameter);
         }
     }
 }

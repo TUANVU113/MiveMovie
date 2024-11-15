@@ -6,7 +6,7 @@
     </Key>
     <Property Name="ID_PHIM" Type="int" Nullable="false" />
     <Property Name="TEN_PHIM" Type="nvarchar" MaxLength="255" />
-    <Property Name="MO_TA" Type="nvarchar" MaxLength="255" />
+    <Property Name="MO_TA" Type="nvarchar" MaxLength="1000" />
     <Property Name="THOI_LUONG" Type="time" Precision="7" />
     <Property Name="QUOC_GIA" Type="nvarchar" MaxLength="255" />
     <Property Name="DAO_DIEN" Type="nvarchar" MaxLength="255" />
@@ -21,8 +21,8 @@
     <Key>
       <PropertyRef Name="ID_DG" />
     </Key>
-    <Property Name="ID_DG" Type="int" Nullable="false" />
-    <Property Name="BINH_LUAN" Type="nvarchar" MaxLength="255" />
+    <Property Name="ID_DG" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BINH_LUAN" Type="nvarchar" MaxLength="500" />
     <Property Name="SO_SAO" Type="int" />
     <Property Name="NGAY_DG" Type="date" />
     <Property Name="ID_ND" Type="int" />
@@ -32,30 +32,35 @@
     <Key>
       <PropertyRef Name="ID_DS" />
     </Key>
-    <Property Name="ID_DS" Type="int" Nullable="false" />
-    <Property Name="NGAY_THEM" Type="date" />
-    <Property Name="SO_LUONG" Type="int" />
+    <Property Name="ID_DS" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_ND" Type="int" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6013: The table/view 'MINEMOVIE.dbo.KH_PHIM_DSYT' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="KH_PHIM_DSYT">
-          <Property Name="ID_PHIM" Type="int" />
-          <Property Name="ID_DS" Type="int" />
-        </EntityType>-->
-  <!--Errors Found During Generation:
-warning 6013: The table/view 'MINEMOVIE.dbo.KH_PHIM_RAP' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="KH_PHIM_RAP">
-          <Property Name="ID_PHIM" Type="int" />
-          <Property Name="ID_RAP" Type="int" />
-        </EntityType>-->
+  <EntityType Name="KH_PHIM_DSYT">
+    <Key>
+      <PropertyRef Name="ID_PHIM" />
+      <PropertyRef Name="ID_DS" />
+    </Key>
+    <Property Name="ID_PHIM" Type="int" Nullable="false" />
+    <Property Name="ID_DS" Type="int" Nullable="false" />
+    <Property Name="NGAY_THEM" Type="datetime" />
+  </EntityType>
+  <EntityType Name="KH_PHIM_RAP">
+    <Key>
+      <PropertyRef Name="ID_PHIM" />
+      <PropertyRef Name="ID_RAP" />
+    </Key>
+    <Property Name="ID_PHIM" Type="int" Nullable="false" />
+    <Property Name="ID_RAP" Type="int" Nullable="false" />
+    <Property Name="XU_HUONG" Type="bit" />
+  </EntityType>
   <EntityType Name="NGUOI_DUNG">
     <Key>
       <PropertyRef Name="ID_ND" />
     </Key>
-    <Property Name="ID_ND" Type="int" Nullable="false" />
+    <Property Name="ID_ND" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TEN_ND" Type="nvarchar" MaxLength="255" />
     <Property Name="GMAIL" Type="nvarchar" MaxLength="255" />
-    <Property Name="MAT_KHAU" Type="nvarchar" MaxLength="255" />
+    <Property Name="MAT_KHAU_hashed" Type="nvarchar" MaxLength="255" />
     <Property Name="CHUC_VU" Type="nvarchar" MaxLength="255" />
     <Property Name="ANH_DAI_DIEN" Type="nvarchar" MaxLength="255" />
   </EntityType>
@@ -75,16 +80,6 @@ warning 6013: The table/view 'MINEMOVIE.dbo.KH_PHIM_RAP' does not have a primary
     <Property Name="ID_RAP" Type="int" Nullable="false" />
     <Property Name="TEN_RAP" Type="nvarchar" MaxLength="255" />
     <Property Name="WEBSITE" Type="nvarchar" MaxLength="255" />
-  </EntityType>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="principal_id" Type="int" Nullable="false" />
-    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="version" Type="int" />
-    <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
   <EntityType Name="THE_LOAI">
     <Key>
@@ -107,10 +102,19 @@ warning 6013: The table/view 'MINEMOVIE.dbo.KH_PHIM_RAP' does not have a primary
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <!--Errors Found During Generation:
-error 6004: The table 'MINEMOVIE.dbo.KH_PHIM_DSYT' is referenced by a relationship, but cannot be found.
-        <Association Name="FK_ID_DSYT_PHIM" />-->
-  <Association Name="FK_ID_ND">
+  <Association Name="FK_ID_DSYT_PHIM">
+    <End Role="DS_YEU_THICH" Type="Self.DS_YEU_THICH" Multiplicity="1" />
+    <End Role="KH_PHIM_DSYT" Type="Self.KH_PHIM_DSYT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DS_YEU_THICH">
+        <PropertyRef Name="ID_DS" />
+      </Principal>
+      <Dependent Role="KH_PHIM_DSYT">
+        <PropertyRef Name="ID_DS" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ID_ND_DANH_GIA">
     <End Role="NGUOI_DUNG" Type="Self.NGUOI_DUNG" Multiplicity="0..1" />
     <End Role="DANH_GIA" Type="Self.DANH_GIA" Multiplicity="*" />
     <ReferentialConstraint>
@@ -118,6 +122,18 @@ error 6004: The table 'MINEMOVIE.dbo.KH_PHIM_DSYT' is referenced by a relationsh
         <PropertyRef Name="ID_ND" />
       </Principal>
       <Dependent Role="DANH_GIA">
+        <PropertyRef Name="ID_ND" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ID_ND_DSYT">
+    <End Role="NGUOI_DUNG" Type="Self.NGUOI_DUNG" Multiplicity="0..1" />
+    <End Role="DS_YEU_THICH" Type="Self.DS_YEU_THICH" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NGUOI_DUNG">
+        <PropertyRef Name="ID_ND" />
+      </Principal>
+      <Dependent Role="DS_YEU_THICH">
         <PropertyRef Name="ID_ND" />
       </Dependent>
     </ReferentialConstraint>
@@ -134,15 +150,42 @@ error 6004: The table 'MINEMOVIE.dbo.KH_PHIM_DSYT' is referenced by a relationsh
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <!--Errors Found During Generation:
-error 6004: The table 'MINEMOVIE.dbo.KH_PHIM_DSYT' is referenced by a relationship, but cannot be found.
-        <Association Name="FK_ID_PHIM_DSYT" />-->
-  <!--Errors Found During Generation:
-error 6004: The table 'MINEMOVIE.dbo.KH_PHIM_RAP' is referenced by a relationship, but cannot be found.
-        <Association Name="FK_ID_PHIM_RAP" />-->
-  <!--Errors Found During Generation:
-error 6004: The table 'MINEMOVIE.dbo.KH_PHIM_RAP' is referenced by a relationship, but cannot be found.
-        <Association Name="FK_ID_RAP_PHIM" />-->
+  <Association Name="FK_ID_PHIM_DSYT">
+    <End Role="CHI_TIET_PHIM" Type="Self.CHI_TIET_PHIM" Multiplicity="1" />
+    <End Role="KH_PHIM_DSYT" Type="Self.KH_PHIM_DSYT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CHI_TIET_PHIM">
+        <PropertyRef Name="ID_PHIM" />
+      </Principal>
+      <Dependent Role="KH_PHIM_DSYT">
+        <PropertyRef Name="ID_PHIM" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ID_PHIM_RAP">
+    <End Role="CHI_TIET_PHIM" Type="Self.CHI_TIET_PHIM" Multiplicity="1" />
+    <End Role="KH_PHIM_RAP" Type="Self.KH_PHIM_RAP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CHI_TIET_PHIM">
+        <PropertyRef Name="ID_PHIM" />
+      </Principal>
+      <Dependent Role="KH_PHIM_RAP">
+        <PropertyRef Name="ID_PHIM" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ID_RAP_PHIM">
+    <End Role="RAP_PHIM" Type="Self.RAP_PHIM" Multiplicity="1" />
+    <End Role="KH_PHIM_RAP" Type="Self.KH_PHIM_RAP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RAP_PHIM">
+        <PropertyRef Name="ID_RAP" />
+      </Principal>
+      <Dependent Role="KH_PHIM_RAP">
+        <PropertyRef Name="ID_RAP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_ID_TL">
     <End Role="THE_LOAI" Type="Self.THE_LOAI" Multiplicity="1" />
     <End Role="PHIM" Type="Self.PHIM" Multiplicity="*" />
@@ -155,60 +198,75 @@ error 6004: The table 'MINEMOVIE.dbo.KH_PHIM_RAP' is referenced by a relationshi
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
-  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-    <Parameter Name="owner_id" Type="int" Mode="In" />
-    <Parameter Name="version" Type="int" Mode="In" />
-    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  <Function Name="procDangKiNguoiDung" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="tentk" Type="nvarchar" Mode="In" />
+    <Parameter Name="gmail" Type="nvarchar" Mode="In" />
+    <Parameter Name="mk" Type="nvarchar" Mode="In" />
+    <Parameter Name="ava" Type="nvarchar" Mode="In" />
   </Function>
-  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-    <Parameter Name="owner_id" Type="int" Mode="In" />
-    <Parameter Name="version" Type="int" Mode="In" />
-    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  <Function Name="procDangNhapNguoiDung" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="tentk" Type="nvarchar" Mode="In" />
+    <Parameter Name="mk" Type="nvarchar" Mode="In" />
   </Function>
-  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-    <Parameter Name="owner_id" Type="int" Mode="In" />
+  <Function Name="procKiemTraPhimYeuThich" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idND" Type="int" Mode="In" />
+    <Parameter Name="idPhim" Type="int" Mode="In" />
   </Function>
-  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-    <Parameter Name="owner_id" Type="int" Mode="In" />
+  <Function Name="procThemPhimYeuThich" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idND" Type="int" Mode="In" />
+    <Parameter Name="idPhim" Type="int" Mode="In" />
   </Function>
-  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-    <Parameter Name="owner_id" Type="int" Mode="In" />
+  <Function Name="procThongTinNguoiDung" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="tentk" Type="nvarchar" Mode="In" />
   </Function>
-  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-    <Parameter Name="owner_id" Type="int" Mode="In" />
-    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
-  </Function>
-  <Function Name="sp_TimKiemPhim" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+  <Function Name="procTimKiemPhim" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="TuKhoa" Type="nvarchar" Mode="In" />
   </Function>
-  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="procXoaPhimYeuThich" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idND" Type="int" Mode="In" />
+    <Parameter Name="idPhim" Type="int" Mode="In" />
+  </Function>
   <EntityContainer Name="MINEMOVIEModelStoreContainer">
     <EntitySet Name="CHI_TIET_PHIM" EntityType="Self.CHI_TIET_PHIM" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DANH_GIA" EntityType="Self.DANH_GIA" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DS_YEU_THICH" EntityType="Self.DS_YEU_THICH" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KH_PHIM_DSYT" EntityType="Self.KH_PHIM_DSYT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KH_PHIM_RAP" EntityType="Self.KH_PHIM_RAP" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="NGUOI_DUNG" EntityType="Self.NGUOI_DUNG" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PHIM" EntityType="Self.PHIM" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="RAP_PHIM" EntityType="Self.RAP_PHIM" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="THE_LOAI" EntityType="Self.THE_LOAI" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_ID_DM_ID_TL" Association="Self.FK_ID_DM_ID_TL">
       <End Role="PHIM" EntitySet="PHIM" />
       <End Role="CHI_TIET_PHIM" EntitySet="CHI_TIET_PHIM" />
     </AssociationSet>
-    <AssociationSet Name="FK_ID_ND" Association="Self.FK_ID_ND">
+    <AssociationSet Name="FK_ID_DSYT_PHIM" Association="Self.FK_ID_DSYT_PHIM">
+      <End Role="DS_YEU_THICH" EntitySet="DS_YEU_THICH" />
+      <End Role="KH_PHIM_DSYT" EntitySet="KH_PHIM_DSYT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ID_ND_DANH_GIA" Association="Self.FK_ID_ND_DANH_GIA">
       <End Role="NGUOI_DUNG" EntitySet="NGUOI_DUNG" />
       <End Role="DANH_GIA" EntitySet="DANH_GIA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ID_ND_DSYT" Association="Self.FK_ID_ND_DSYT">
+      <End Role="NGUOI_DUNG" EntitySet="NGUOI_DUNG" />
+      <End Role="DS_YEU_THICH" EntitySet="DS_YEU_THICH" />
     </AssociationSet>
     <AssociationSet Name="FK_ID_PHIM" Association="Self.FK_ID_PHIM">
       <End Role="CHI_TIET_PHIM" EntitySet="CHI_TIET_PHIM" />
       <End Role="DANH_GIA" EntitySet="DANH_GIA" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ID_PHIM_DSYT" Association="Self.FK_ID_PHIM_DSYT">
+      <End Role="CHI_TIET_PHIM" EntitySet="CHI_TIET_PHIM" />
+      <End Role="KH_PHIM_DSYT" EntitySet="KH_PHIM_DSYT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ID_PHIM_RAP" Association="Self.FK_ID_PHIM_RAP">
+      <End Role="CHI_TIET_PHIM" EntitySet="CHI_TIET_PHIM" />
+      <End Role="KH_PHIM_RAP" EntitySet="KH_PHIM_RAP" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ID_RAP_PHIM" Association="Self.FK_ID_RAP_PHIM">
+      <End Role="RAP_PHIM" EntitySet="RAP_PHIM" />
+      <End Role="KH_PHIM_RAP" EntitySet="KH_PHIM_RAP" />
     </AssociationSet>
     <AssociationSet Name="FK_ID_TL" Association="Self.FK_ID_TL">
       <End Role="THE_LOAI" EntitySet="THE_LOAI" />

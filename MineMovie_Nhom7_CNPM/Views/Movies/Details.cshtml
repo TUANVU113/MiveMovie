@@ -1,28 +1,101 @@
-﻿@model MineMovie_Nhom7_CNPM.Models.CHI_TIET_PHIM
+﻿@model MineMovie_Nhom7_CNPM.Models.ViewModels.MovieDetailsVM
+
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = Model.TenPhim;
     Layout = "~/Views/Shared/_LayoutPage1.cshtml";
 }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/4.0.0/jquery.validate.unobtrusive.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-<div class="row">
-    <div class="col-md-4">
-        <div class="d-flex justify-content-center align-items-center" style="height: 250px; width: 100%">
-            <img src="@Url.Content("~/Content/Images/Poster/" + Model.HINH_ANH)" class="img-fluid" style="max-height: 100%; max-width: 100%;" alt="Ảnh bìa" />
+    <script>
+        $(document).ready(function () {
+    // Xử lý khi nhấn vào nút yêu thích
+            $('#favorite-btn').click(function () {
+                var movieId = $(this).data('id'); // Lấy ID phim từ data attribute
+
+                // Kiểm tra xem người dùng có đăng nhập không
+                $.ajax({
+                    url: '@Url.Action("ToggleFavoriteAjax", "Movies")', // Đường dẫn tới action controller
+                    type: 'POST',
+                    data: { id: movieId },
+                    success: function (response) {
+                        if (response.success) {
+                            // Cập nhật lại giao diện tùy theo trạng thái yêu thích
+                            if (response.isFavorite) {
+                                $('#favorite-btn i').removeClass('fa-regular').addClass('fa-solid').css('color', 'red');
+                            } else {
+                                $('#favorite-btn i').removeClass('fa-solid').addClass('fa-regular').css('color', 'gray');
+                            }
+                        } else {
+                            // Hiển thị thông báo đăng nhập nếu người dùng chưa đăng nhập
+                            alert(response.message);
+                        }
+                    },
+                    error: function () {
+                        alert("Có lỗi xảy ra, vui lòng thử lại!");
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">@Model.TenPhim</h1>
+
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <img src="@Model.HinhAnh" class="img-fluid rounded" alt="@Model.TenPhim">
+            </div>
+            <div class="col-md-8">
+                <p><strong>Mô tả:</strong> @Model.MoTa</p>
+                <p><strong>Thời lượng:</strong> @Model.ThoiLuong phút</p>
+                <p><strong>Quốc gia:</strong> @Model.QuocGia</p>
+                <p><strong>Đạo diễn:</strong> @Model.DaoDien</p>
+                <p><strong>Năm phát hành:</strong> @Model.NamPh</p>
+
+                <div class="ratings">
+                    <p><strong>Đánh giá:</strong></p>
+                    <ul class="list-unstyled">
+                        <li>IMDb: @ViewBag.ImdbRating</li>
+                        <li>Rotten Tomatoes: @ViewBag.RtRating</li>
+                        <li>Metacritic: @ViewBag.MetacriticRating</li>
+                    </ul>
+                </div>
+                <button class="favorite-btn" id="favorite-btn" data-id="@Model.IdPhim">
+                    @if (Model.IsFavorite)
+                    {
+                        <i class="fa-solid fa-heart" style="color: red;"></i> <!-- Đỏ nếu đã yêu thích -->
+                    }
+                    else
+                    {
+                        <i class="fa-regular fa-heart"></i> <!-- Xám nếu chưa yêu thích -->
+                    }
+                </button>
+
+                <!-- Thông báo nếu người dùng chưa đăng nhập -->
+                <div id="login-prompt" style="display: none;">
+                    <p><a href="@Url.Action("Login", "Account")">Đăng nhập để thêm vào danh sách yêu thích</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="mt-5">
+            <h3>Các lựa chọn thêm</h3>
+            <ul class="list-inline">
+                <li class="list-inline-item">
+                    <a href="@Url.Action("Index", "Movies")" class="btn btn-outline-secondary">Quay lại danh sách</a>
+                </li>
+            </ul>
         </div>
     </div>
-    <div class="col-md-8">
-        <h2>@Model.TEN_PHIM</h2>
-        <p><strong>Nội dung phim:</strong> @Model.MO_TA</p>
-        <p><strong>Thời lượng:</strong> @Model.THOI_LUONG</p>
-        <p><strong>Quốc gia:</strong> @Model.QUOC_GIA</p>
-        <p><strong>Đạo diễn:</strong> @Model.DAO_DIEN</p>
-        <p><strong>Trailer:</strong> @Model.TRAILER</p>
-        <p><strong>Năm khởi chiếu:</strong> @Model.NAM_PH</p>
-        <p><strong>Danh mục:</strong> @Model.PHIM.TEN_DANH_MUC</p>
-        <p><strong>Thể loại:</strong> @Model.PHIM.ID_TL.</p>
-        <p><strong>Điểm IMDb:</strong> @ViewBag.ImdbRating</p> <!-- Hiển thị rating từ IMDb -->
-        <p><strong>Điểm Rotten Tomatoes:</strong> @ViewBag.RtRating</p> <!-- Hiển thị rating từ Rotten Tomatoes -->
-        <p><strong>Điểm Metacritic:</strong> @ViewBag.MetacriticRating</p> <!-- Hiển thị rating từ Metacritic -->
-        <a href="/movies/index">Quay lại</a>
-    </div>
-</div>
+</body>
+</html>

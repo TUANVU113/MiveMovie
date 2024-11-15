@@ -18,16 +18,19 @@ namespace MineMovie_Nhom7_CNPM.Models
         public NGUOI_DUNG()
         {
             this.DANH_GIA = new HashSet<DANH_GIA>();
+            this.DS_YEU_THICH = new HashSet<DS_YEU_THICH>();
         }
     
         public int ID_ND { get; set; }
         public string TEN_ND { get; set; }
         public string GMAIL { get; set; }
-        public string MAT_KHAU { get; set; }
+        public string MAT_KHAU_hashed { get; set; }
         public string CHUC_VU { get; set; }
         public string ANH_DAI_DIEN { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DANH_GIA> DANH_GIA { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DS_YEU_THICH> DS_YEU_THICH { get; set; }
     }
 }
