@@ -14,8 +14,17 @@ namespace MineMovie_Nhom7_CNPM.Models
     
     public partial class DS_YEU_THICH
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public DS_YEU_THICH()
+        {
+            this.KH_PHIM_DSYT = new HashSet<KH_PHIM_DSYT>();
+        }
+    
         public int ID_DS { get; set; }
-        public Nullable<System.DateTime> NGAY_THEM { get; set; }
-        public Nullable<int> SO_LUONG { get; set; }
+        public Nullable<int> ID_ND { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<KH_PHIM_DSYT> KH_PHIM_DSYT { get; set; }
+        public virtual NGUOI_DUNG NGUOI_DUNG { get; set; }
     }
 }

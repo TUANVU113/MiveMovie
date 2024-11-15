@@ -56,6 +56,9 @@
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
@@ -99,8 +102,8 @@
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -135,58 +138,42 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-grid.css" />
-    <Content Include="Content\bootstrap-grid.min.css" />
-    <Content Include="Content\bootstrap-grid.rtl.css" />
-    <Content Include="Content\bootstrap-grid.rtl.min.css" />
-    <Content Include="Content\bootstrap-reboot.css" />
-    <Content Include="Content\bootstrap-reboot.min.css" />
-    <Content Include="Content\bootstrap-reboot.rtl.css" />
-    <Content Include="Content\bootstrap-reboot.rtl.min.css" />
-    <Content Include="Content\bootstrap-utilities.css" />
-    <Content Include="Content\bootstrap-utilities.min.css" />
-    <Content Include="Content\bootstrap-utilities.rtl.css" />
-    <Content Include="Content\bootstrap-utilities.rtl.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\bootstrap.rtl.css" />
-    <Content Include="Content\bootstrap.rtl.min.css" />
-    <Content Include="Content\Images\Poster\1.jpg" />
-    <Content Include="Content\Images\Poster\10.jpg" />
-    <Content Include="Content\Images\Poster\11.jpg" />
-    <Content Include="Content\Images\Poster\12.jpg" />
-    <Content Include="Content\Images\Poster\2.jpg" />
-    <Content Include="Content\Images\Poster\3.jpg" />
-    <Content Include="Content\Images\Poster\4.jpg" />
-    <Content Include="Content\Images\Poster\5.jpg" />
-    <Content Include="Content\Images\Poster\6.jpg" />
-    <Content Include="Content\Images\Poster\7.jpg" />
-    <Content Include="Content\Images\Poster\8.jpg" />
-    <Content Include="Content\Images\Poster\9.jpg" />
-    <Content Include="Content\Site.css" />
+    <Content Include="Contents\Images\Poster\1.jpg" />
+    <Content Include="Contents\Images\Poster\10.jpg" />
+    <Content Include="Contents\Images\Poster\11.jpg" />
+    <Content Include="Contents\Images\Poster\12.jpg" />
+    <Content Include="Contents\Images\Poster\2.jpg" />
+    <Content Include="Contents\Images\Poster\3.jpg" />
+    <Content Include="Contents\Images\Poster\4.jpg" />
+    <Content Include="Contents\Images\Poster\5.jpg" />
+    <Content Include="Contents\Images\Poster\6.jpg" />
+    <Content Include="Contents\Images\Poster\7.jpg" />
+    <Content Include="Contents\Images\Poster\8.jpg" />
+    <Content Include="Contents\Images\Poster\9.jpg" />
+    <Content Include="Contents\Site.css" />
     <Content Include="Global.asax" />
     <Content Include="Models\MineMovieDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>MineMovieDB.Context.cs</LastGenOutput>
       <DependentUpon>MineMovieDB.edmx</DependentUpon>
+      <LastGenOutput>MineMovieDB.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\MineMovieDB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>MineMovieDB.edmx</DependentUpon>
       <LastGenOutput>MineMovieDB.cs</LastGenOutput>
     </Content>
-    <Content Include="Scripts\bootstrap.bundle.js" />
-    <Content Include="Scripts\bootstrap.bundle.min.js" />
-    <Content Include="Scripts\bootstrap.esm.js" />
-    <Content Include="Scripts\bootstrap.esm.min.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\User\Controllers\HomeController.cs" />
+    <Compile Include="Areas\User\UserAreaRegistration.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
+    <Compile Include="Filter\RoleAuthorizeAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -197,6 +184,12 @@
       <DependentUpon>MineMovieDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DS_YEU_THICH.cs">
+      <DependentUpon>MineMovieDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\KH_PHIM_DSYT.cs">
+      <DependentUpon>MineMovieDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\KH_PHIM_RAP.cs">
       <DependentUpon>MineMovieDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MineMovieDB.Context.cs">
@@ -220,29 +213,33 @@
     <Compile Include="Models\PHIM.cs">
       <DependentUpon>MineMovieDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\procThongTinNguoiDung_Result.cs">
+      <DependentUpon>MineMovieDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\procTimKiemPhim_Result.cs">
+      <DependentUpon>MineMovieDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\RAP_PHIM.cs">
-      <DependentUpon>MineMovieDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>MineMovieDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sp_helpdiagrams_Result.cs">
-      <DependentUpon>MineMovieDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sp_TimKiemPhim_Result.cs">
-      <DependentUpon>MineMovieDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>MineMovieDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\THE_LOAI.cs">
       <DependentUpon>MineMovieDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModels\LoginViewModel.cs" />
+    <Compile Include="Models\ViewModels\MovieDetailsVM.cs" />
+    <Compile Include="Models\ViewModels\RegisterViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\OMDB_API.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\User\Views\web.config" />
+    <Content Include="Areas\Admin\Views\Shared\AdminLayoutPage.cshtml" />
+    <Content Include="Areas\User\Views\Shared\UserLayoutPage.cshtml" />
+    <Content Include="Areas\User\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
+    <Content Include="Areas\User\Views\Home\Index.cshtml" />
     <EntityDeploy Include="Models\MineMovieDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>MineMovieDB.Designer.cs</LastGenOutput>
@@ -250,22 +247,6 @@
     <Content Include="Models\MineMovieDB.edmx.diagram">
       <DependentUpon>MineMovieDB.edmx</DependentUpon>
     </Content>
-    <Content Include="Content\bootstrap-grid.css.map" />
-    <Content Include="Content\bootstrap-grid.min.css.map" />
-    <Content Include="Content\bootstrap-grid.rtl.css.map" />
-    <Content Include="Content\bootstrap-grid.rtl.min.css.map" />
-    <Content Include="Content\bootstrap-reboot.css.map" />
-    <Content Include="Content\bootstrap-reboot.min.css.map" />
-    <Content Include="Content\bootstrap-reboot.rtl.css.map" />
-    <Content Include="Content\bootstrap-reboot.rtl.min.css.map" />
-    <Content Include="Content\bootstrap-utilities.css.map" />
-    <Content Include="Content\bootstrap-utilities.min.css.map" />
-    <Content Include="Content\bootstrap-utilities.rtl.css.map" />
-    <Content Include="Content\bootstrap-utilities.rtl.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.rtl.css.map" />
-    <Content Include="Content\bootstrap.rtl.min.css.map" />
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -273,12 +254,8 @@
     <Content Include="Views\Shared\_LayoutPage1.cshtml" />
     <Content Include="Views\Movies\Details.cshtml" />
     <Content Include="Views\Movies\Index.cshtml" />
-    <Content Include="Scripts\bootstrap.min.js.map" />
-    <Content Include="Scripts\bootstrap.js.map" />
-    <Content Include="Scripts\bootstrap.esm.min.js.map" />
-    <Content Include="Scripts\bootstrap.esm.js.map" />
-    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
-    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -288,6 +265,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\User\Data\" />
+    <Folder Include="Views\HomeAdmin\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -321,12 +301,12 @@
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets'))" />
     <Error Condition="!Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.5.1\build\EntityFramework.props'))" />
     <Error Condition="!Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.5.1\build\EntityFramework.targets'))" />
-    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets'))" />
   </Target>
-  <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.targets')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.4.1.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" />
+  <Import Project="..\packages\EntityFramework.6.5.1\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.5.1\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

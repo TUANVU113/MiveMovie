@@ -18,6 +18,8 @@ namespace MineMovie_Nhom7_CNPM.Models
         public CHI_TIET_PHIM()
         {
             this.DANH_GIA = new HashSet<DANH_GIA>();
+            this.KH_PHIM_DSYT = new HashSet<KH_PHIM_DSYT>();
+            this.KH_PHIM_RAP = new HashSet<KH_PHIM_RAP>();
         }
     
         public int ID_PHIM { get; set; }
@@ -36,5 +38,9 @@ namespace MineMovie_Nhom7_CNPM.Models
         public virtual PHIM PHIM { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DANH_GIA> DANH_GIA { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<KH_PHIM_DSYT> KH_PHIM_DSYT { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<KH_PHIM_RAP> KH_PHIM_RAP { get; set; }
     }
 }

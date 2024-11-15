@@ -14,8 +14,17 @@ namespace MineMovie_Nhom7_CNPM.Models
     
     public partial class RAP_PHIM
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public RAP_PHIM()
+        {
+            this.KH_PHIM_RAP = new HashSet<KH_PHIM_RAP>();
+        }
+    
         public int ID_RAP { get; set; }
         public string TEN_RAP { get; set; }
         public string WEBSITE { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<KH_PHIM_RAP> KH_PHIM_RAP { get; set; }
     }
 }

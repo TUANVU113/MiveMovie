@@ -3,8 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\DUC anh\\source\\repos\\MiveMovie\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{6A532F7A-125D-4D34-9567-F0E7EAFDAD6E}|MineMovie_Nhom7_CNPM\\MineMovie_Nhom7_CNPM.csproj|c:\\users\\duc anh\\source\\repos\\mivemovie\\minemovie_nhom7_cnpm\\views\\movies\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{6A532F7A-125D-4D34-9567-F0E7EAFDAD6E}|MineMovie_Nhom7_CNPM\\MineMovie_Nhom7_CNPM.csproj|solutionrelative:minemovie_nhom7_cnpm\\views\\movies\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{6A532F7A-125D-4D34-9567-F0E7EAFDAD6E}|MineMovie_Nhom7_CNPM\\MineMovie_Nhom7_CNPM.csproj|C:\\Users\\DUC anh\\source\\repos\\MiveMovie\\minemovie_nhom7_cnpm\\controllers\\moviescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6A532F7A-125D-4D34-9567-F0E7EAFDAD6E}|MineMovie_Nhom7_CNPM\\MineMovie_Nhom7_CNPM.csproj|solutionrelative:minemovie_nhom7_cnpm\\controllers\\moviescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6A532F7A-125D-4D34-9567-F0E7EAFDAD6E}|MineMovie_Nhom7_CNPM\\MineMovie_Nhom7_CNPM.csproj|C:\\Users\\DUC anh\\source\\repos\\MiveMovie\\minemovie_nhom7_cnpm\\views\\movies\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6A532F7A-125D-4D34-9567-F0E7EAFDAD6E}|MineMovie_Nhom7_CNPM\\MineMovie_Nhom7_CNPM.csproj|solutionrelative:minemovie_nhom7_cnpm\\views\\movies\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6A532F7A-125D-4D34-9567-F0E7EAFDAD6E}|MineMovie_Nhom7_CNPM\\MineMovie_Nhom7_CNPM.csproj|c:\\users\\duc anh\\source\\repos\\mivemovie\\minemovie_nhom7_cnpm\\filter\\roleauthorizeattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6A532F7A-125D-4D34-9567-F0E7EAFDAD6E}|MineMovie_Nhom7_CNPM\\MineMovie_Nhom7_CNPM.csproj|solutionrelative:minemovie_nhom7_cnpm\\filter\\roleauthorizeattribute.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6A532F7A-125D-4D34-9567-F0E7EAFDAD6E}|MineMovie_Nhom7_CNPM\\MineMovie_Nhom7_CNPM.csproj|c:\\users\\duc anh\\source\\repos\\mivemovie\\minemovie_nhom7_cnpm\\areas\\admin\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6A532F7A-125D-4D34-9567-F0E7EAFDAD6E}|MineMovie_Nhom7_CNPM\\MineMovie_Nhom7_CNPM.csproj|solutionrelative:minemovie_nhom7_cnpm\\areas\\admin\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,23 +26,60 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\DUC anh\\source\\repos\\MiveMovie\\MineMovie_Nhom7_CNPM\\Views\\Movies\\Index.cshtml",
-              "RelativeDocumentMoniker": "MineMovie_Nhom7_CNPM\\Views\\Movies\\Index.cshtml",
-              "ToolTip": "C:\\Users\\DUC anh\\source\\repos\\MiveMovie\\MineMovie_Nhom7_CNPM\\Views\\Movies\\Index.cshtml",
-              "RelativeToolTip": "MineMovie_Nhom7_CNPM\\Views\\Movies\\Index.cshtml",
-              "ViewState": "AgIAABsAAAAAAAAAAAAAACgAAABIAAAAAAAAAA==",
+              "Title": "MoviesController.cs",
+              "DocumentMoniker": "C:\\Users\\DUC anh\\source\\repos\\MiveMovie\\MineMovie_Nhom7_CNPM\\Controllers\\MoviesController.cs",
+              "RelativeDocumentMoniker": "MineMovie_Nhom7_CNPM\\Controllers\\MoviesController.cs",
+              "ToolTip": "C:\\Users\\DUC anh\\source\\repos\\MiveMovie\\MineMovie_Nhom7_CNPM\\Controllers\\MoviesController.cs",
+              "RelativeToolTip": "MineMovie_Nhom7_CNPM\\Controllers\\MoviesController.cs",
+              "ViewState": "AgIAAGMAAAAAAAAAAAAswHIAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-15T09:16:29.324Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "C:\\Users\\DUC anh\\source\\repos\\MiveMovie\\MineMovie_Nhom7_CNPM\\Views\\Movies\\Details.cshtml",
+              "RelativeDocumentMoniker": "MineMovie_Nhom7_CNPM\\Views\\Movies\\Details.cshtml",
+              "ToolTip": "C:\\Users\\DUC anh\\source\\repos\\MiveMovie\\MineMovie_Nhom7_CNPM\\Views\\Movies\\Details.cshtml",
+              "RelativeToolTip": "MineMovie_Nhom7_CNPM\\Views\\Movies\\Details.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAF4AAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-11-07T12:44:44.781Z",
+              "WhenOpened": "2024-11-15T08:37:07.454Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "RoleAuthorizeAttribute.cs",
+              "DocumentMoniker": "C:\\Users\\DUC anh\\source\\repos\\MiveMovie\\MineMovie_Nhom7_CNPM\\Filter\\RoleAuthorizeAttribute.cs",
+              "RelativeDocumentMoniker": "MineMovie_Nhom7_CNPM\\Filter\\RoleAuthorizeAttribute.cs",
+              "ToolTip": "C:\\Users\\DUC anh\\source\\repos\\MiveMovie\\MineMovie_Nhom7_CNPM\\Filter\\RoleAuthorizeAttribute.cs",
+              "RelativeToolTip": "MineMovie_Nhom7_CNPM\\Filter\\RoleAuthorizeAttribute.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAwB8AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-15T15:10:04.278Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\DUC anh\\source\\repos\\MiveMovie\\MineMovie_Nhom7_CNPM\\Areas\\Admin\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "MineMovie_Nhom7_CNPM\\Areas\\Admin\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\DUC anh\\source\\repos\\MiveMovie\\MineMovie_Nhom7_CNPM\\Areas\\Admin\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "MineMovie_Nhom7_CNPM\\Areas\\Admin\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-15T14:36:03.125Z",
               "EditorCaption": ""
             }
           ]
